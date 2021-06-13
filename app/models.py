@@ -1,6 +1,9 @@
 from . import db
 from datetime import datetime
+from werkzeug.security import generate_password_hash,check_password_hash
 
+# generating_password_hash - This function takes in a password and generates a password hash.
+# check_password_hash - This function takes in a hash password and a password entered by a user and checks if the password matches to return a True or False response.
 # user
 class User(db.Model):
     __tablename__ = 'users'
@@ -15,6 +18,8 @@ class User(db.Model):
 
     def __repr__(self):
         return f'User {self.username}'
+
+# @property decorator creates a write only class property password. 
 # pitch
 class Pitch(db.Model):
     __tablename__ = 'pitches'
