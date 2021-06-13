@@ -5,6 +5,8 @@ class Config:
     General configuration parent class
     '''
     SECRET_KEY = os.environ.get('SECRET_KEY') 
+     # this is the location of the database with authentication.
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://axs:code@localhost/blog'
 
 
 
