@@ -11,7 +11,7 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-    title = "Kiru Flask Blog App"
+    title = "Flask Blog"
     return render_template('index.html',title=title)
 
 # login routes
@@ -68,4 +68,4 @@ def update_pic(uname):
         path = f'photos/{filename}'
         user.profile_pic_path = path
         db.session.commit()
-    return redirect(url_for('main.profile',uname=uname
+    return redirect(url_for('main.profile',uname=uname))
