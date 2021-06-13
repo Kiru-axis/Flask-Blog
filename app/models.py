@@ -1,11 +1,19 @@
 from . import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash,check_password_hash
-
 # generating_password_hash - This function takes in a password and generates a password hash.
 # check_password_hash - This function takes in a hash password and a password entered by a user and checks if the password matches to return a True or False response.
+from flask_login import UserMixin
+# implements is_authenticated(),is_active(),is_anonymous(),get_id() functions
+from . import login_manager
+
+
+# Flask-login has a decorator @login_manage.user_loader that modifies the load_userfunction by passing in a user_id to the function that queries the database and gets a User with that ID.
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 # user
-class User(db.Model):
+class User(db.Model,UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(255), index = True)

@@ -14,6 +14,11 @@ def index():
     title = "Kiru Flask Blog App"
     return render_template('index.html',title=title)
 
+# login routes
+@main.route('/login')
+@login_required
+def login():
+    return render_template('login.html')
 # About route and view function
 @main.route('/about')
 def about():
