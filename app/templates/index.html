@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+<div class="container">
+<!-- styles -->
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+{% endblock %}
+
+  <!-- content block -->
+{% block content%}
+<p class="lead">
+
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas cumque
+  inventore sunt laborum dolores, officia reprehenderit dolor architecto
+  enim quam, corrupti labore nemo obcaecati veniam vero aut itaque, et
+  rerum.
+</p>
+
+</div>
+{% endblock content%}
+
