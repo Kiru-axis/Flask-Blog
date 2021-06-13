@@ -1,10 +1,10 @@
 from flask import render_template,request,redirect,url_for,abort
-from app import app
+from .import main
 
 
 
 # Views
-@app.route('/')
+@main.route('/')
 def index():
 
     '''
@@ -14,6 +14,6 @@ def index():
     return render_template('index.html',title=title)
 
 # About route and view function
-@app.route('/about')
+@main.route('/about')
 def about():
     return render_template("about.html",title = "About")
