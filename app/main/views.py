@@ -5,7 +5,7 @@ from flask_login import login_required
 from app.models import User
 from .forms import UpdateProfile,PitchForm,CommentsForm
 from ..import db
-
+# db for saving profile image changes to blog db
 
 
 # Views
@@ -41,7 +41,7 @@ def profile(uname):
 
 
 
-# fetching grom the databse
+# fetching and updating photos from the databse
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required
 def update_profile(uname):
