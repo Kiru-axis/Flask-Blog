@@ -18,3 +18,9 @@ class UpdateProfile(FlaskForm):
 class CommentsForm(FlaskForm):
     body = TextAreaField('Write a comment...', validators=[Required()])
     submit = SubmitField('Submit')
+
+
+# self love
+class UpdateProfile(FlaskForm):
+    bio = TextAreaField('Tell us about you.',validators = [Required()])
+    submit = SubmitField('Submit')

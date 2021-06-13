@@ -3,6 +3,10 @@ from .import main
 from flask_login import login_required
 # login required checks if the user is logged in
 from app.models import User
+from .forms import UpdateProfile,PitchForm,CommentsForm
+from ..import db
+
+
 
 # Views
 @main.route('/')
