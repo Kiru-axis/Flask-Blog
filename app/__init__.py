@@ -25,4 +25,9 @@ def create_app(config_name):
     # initialising sqlalchemy
     db.init_app(app)
 
+    # registering auth blueprint
+    # url_prefix: adds a prefix to all routes registerd with that blueprint
+    from .auth import auth as auth_blueprint
+    app.register_auth(auth_blueprint,url_prefix='/authenticate')
+
     return app
