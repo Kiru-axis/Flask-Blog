@@ -24,3 +24,9 @@ class RegistrationForm(FlaskForm):
 
 
 # Login forms
+class LoginForm(FlaskForm):
+    email = StringField('Your Email Address',validators=[Required(),Email()])
+    password = PasswordField('Password',validators =[Required()])
+   # for confirming whether the user wants to be logged out after the session 
+    remember = BooleanField('Remember me')
+    submit = SubmitField('Sign In')
