@@ -5,6 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_uploads import UploadSet,configure_uploads,IMAGES
 # UploadSet: defines the types of files to upload
+from flask_mail import Mail
+
 
 bootstrap = Bootstrap()
 
@@ -18,6 +20,10 @@ login_manager.login_view = 'auth.login'
 
 # Telling uploadSet the type to be uploaded is an image
 photos = UploadSet('photos',IMAGES)
+
+# crearing instance of the mail
+mail = Mail()
+
 def create_app(config_name):
 
     app = Flask(__name__)
@@ -45,6 +51,9 @@ def create_app(config_name):
 
     # configuring UploadSet
     configure_uploads(app,photos)
+
+    # initialsing mail
+    mail.init_app(app)
 
 
     return app
