@@ -15,9 +15,13 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
+    general = Pitch.query.all()
+    product_pitch = Pitch.query.filter_by(category = 'Product Pitch').all()
+    pickup_lines = Pitch.query.filter_by(category = 'Pickup Lines').all()
+    interview_pitch = Pitch.query.filter_by(category = 'Interview Pitch').all()
+    promotion_pitch = Pitch.query.filter_by(category = 'Promotion Pitch').all()
     title = "Flask Blog"
-    return render_template('index.html',title=title)
-
+    return render_template('index.html', title = title, general = general, product_pitch = product_pitch, pickup_lines = pickup_lines, interview_pitch = interview_pitch, promotion_pitch = promotion_pitch)
 
 
 # login routes
@@ -58,6 +62,7 @@ def update_profile(uname):
         return redirect(url_for('.profile',uname=user.username))
 
     return render_template('profile/update.html',form =form)
+
 
 
 # fetching the photos from the db

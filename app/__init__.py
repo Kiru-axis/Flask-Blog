@@ -3,9 +3,9 @@ from flask_bootstrap import Bootstrap
 from config import config_options
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from flask_uploads import UploadSet,configure_uploads,IMAGES
-# UploadSet: defines the types of files to upload
 from flask_mail import Mail
+# These enables the users to upload photos to their profiles
+from flask_uploads import UploadSet,configure_uploads,IMAGES
 
 
 bootstrap = Bootstrap()
@@ -44,7 +44,7 @@ def create_app(config_name):
     # registering auth blueprint
     # url_prefix: adds a prefix to all routes registerd with that blueprint
     from .auth import auth as auth_blueprint
-    app.register_auth(auth_blueprint,url_prefix='/authenticate')
+    app.register_blueprint(auth_blueprint,url_prefix='/authenticate')
 
     # initalising flasks LoginManger
     login_manager.init_app(app)
