@@ -98,6 +98,8 @@ def new_pitch():
 
 
 
+
+
 @main.route('/pitch/comments', methods = ['GET', 'POST'])
 @login_required
 def comments():    

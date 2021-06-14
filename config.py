@@ -19,7 +19,7 @@ class Config:
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://axs:code@localhost/blog'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://axs:code@localhost/blog_test'
 
 
 class ProdConfig(Config):
@@ -29,10 +29,10 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URI ")
-     # this is the location of the database with authentication.
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://axs:code@localhost/blog'
-
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL","")
+    
+    if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+        SQLALCHEMY_DATABASE_URI =SQLALCHEMY_DATABASE_URI.replace("postgres://","postgresql://",1)
 
 class DevConfig(Config):
     '''
@@ -41,7 +41,10 @@ class DevConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
+     # this is the location of the database with authentication.
 
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://axs:code@localhost/blog'
+    
     DEBUG = True
 
 #These dictionary help us access different configuration option classes.
