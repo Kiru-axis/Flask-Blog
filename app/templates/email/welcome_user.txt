@@ -1,0 +1,2 @@
+Hello {{user.username}}
+Welcome to flask blog where we take your blog seriously.

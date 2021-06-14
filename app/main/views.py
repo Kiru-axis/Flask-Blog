@@ -1,8 +1,8 @@
 from flask import render_template,request,redirect,url_for,abort
 from .import main
-from flask_login import login_required
+from flask_login import login_required,current_user
 # login required checks if the user is logged in
-from app.models import User
+from app.models import User,Pitch, Comment
 from .forms import UpdateProfile,PitchForm,CommentsForm
 from ..import db,photos
 # db for saving profile image changes to blog db
@@ -18,15 +18,13 @@ def index():
     title = "Flask Blog"
     return render_template('index.html',title=title)
 
+
+
 # login routes
 @main.route('/login')
 @login_required
 def login():
     return render_template('login.html')
-# About route and view function
-@main.route('/about')
-def about():
-    return render_template("about.html",title = "About")
 
 
 # profile view Function
@@ -73,3 +71,41 @@ def update_pic(uname):
         user.profile_pic_path = path
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
+
+
+# getting pitches
+@main.route('/pitch/new_pitch', methods = ['GET','POST'])
+@login_required
+def new_pitch():
+    pitch_form = PitchForm()    
+
+    if pitch_form.validate_on_submit():
+        pitch = Pitch(title = pitch_form.title.data, category = pitch_form.category.data, pitch_content = pitch_form.pitch_content.data, author = pitch_form.author.data)
+
+
+        db.session.add(pitch)
+        db.session.commit() 
+        
+        return redirect(url_for('main.index'))
+    
+    return render_template('new_pitch.html', pitch_form = pitch_form)   
+
+
+
+@main.route('/pitch/comments', methods = ['GET', 'POST'])
+@login_required
+def comments():    
+    comments_form = CommentsForm() 
+    comments = Comment.query.all()    
+
+    if comments_form.validate_on_submit():       
+
+        # Updated comment instance
+        new_comment = Comment(body = comments_form.body.data)
+
+        # Save review method
+        new_comment.save_comment()
+
+        return redirect(url_for('main.comments'))
+    
+    return render_template('comments.html', comments_form = comments_form, comments = comments)
