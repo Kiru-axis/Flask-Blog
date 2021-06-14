@@ -1,2 +1,4 @@
 Hello {{user.username}}
-Welcome to flask blog where we take your blog seriously.
+Welcome to flask blog.
+We have just seen you have signed up for our application and want to welcome you to the family. Speak and everyone will listen.
+Your voice in a million ears!!!!

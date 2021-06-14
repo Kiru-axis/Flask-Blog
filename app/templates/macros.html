@@ -1,4 +1,5 @@
-{% macro displayPitchList(pitch_list) %} {% for pitch in pitch_list %}
+{% macro displayPitchList(pitch_list) %} 
+{% for pitch in pitch_list %}
 <div class="col-md-3 col-sm-6 col-xs-6" id='pitch'>
     <div class="card">
         <div class="card-header" style="color: white
@@ -23,7 +24,7 @@
                     <span class="fas fa-comments"></span>
                 </a>
             </li>
-            <li class="list-group-item">{{pitch.published_at}}</li>
+            <li class="list-group-item">{{pitch.published_at.strftime('%Y-%m-%d')}}</li>
             <li class="list-group-item" style="background-color: whitesmoke;">
                 <a href="{{url_for('main.new_pitch')}}" class="new_pitch">
                     <span id="new_pitch">Click to create a new Pitch

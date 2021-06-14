@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url_for,abort
+from flask import render_template,request,redirect,flash,url_for,abort
 from .import main
 from flask_login import login_required,current_user
 # login required checks if the user is logged in
@@ -90,6 +90,7 @@ def new_pitch():
 
         db.session.add(pitch)
         db.session.commit() 
+
         
         return redirect(url_for('main.index'))
     
