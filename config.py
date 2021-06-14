@@ -5,10 +5,9 @@ class Config:
     General configuration parent class
     '''
     SECRET_KEY = os.environ.get('SECRET_KEY') 
-     # this is the location of the database with authentication.
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://axs:code@localhost/blog'
     #specifies the destination to where we want to store our Images
     UPLOADED_PHOTOS_DEST ='app/static/photos'
+    SQLALCHEMY_TRACK_MODIFICATIONSP= True
 
 
     # email configurations
@@ -26,7 +25,9 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URI ")
+     # this is the location of the database with authentication.
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://axs:code@localhost/blog'
 
 
 class DevConfig(Config):
