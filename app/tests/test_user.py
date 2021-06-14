@@ -1,10 +1,10 @@
 import unittest
-from ..models import User
+from app.models import User
 
 class UserModelTest(unittest.TestCase):
 
     def setUp(self):
-        self.new_user = User(id = 1, password = 'pass', username = 'Test', email="test@gmail", bio = 'i love all things premium', profile_pic_path='/photos/login.jpg')
+        self.new_user = User(id = 1, password = 'emmawatson', username = 'James', email="jamesgkimari@gmail.com", bio = 'i love all things premium', profile_pic_path='/photos/login.jpg')
 
     def test_instance(self):
         self.assertTrue(isinstance(self.new_user, User))
@@ -17,8 +17,7 @@ class UserModelTest(unittest.TestCase):
             self.new_user.password
 
     def test_password_verification(self):
-        self.assertTrue(self.new_user.verify_password('pass'))
+        self.assertTrue(self.new_user.verify_password('emmawatson'))
 
 
-if __name__ == '__main__':
-    unittest.main()
+
