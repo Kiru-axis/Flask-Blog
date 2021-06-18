@@ -7,7 +7,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') 
     #specifies the destination to where we want to store our Images
     UPLOADED_PHOTOS_DEST ='app/static/photos'
-    SQLALCHEMY_TRACK_MODIFICATIONSP= True
+    SQLALCHEMY_TRACK_MODIFICATIONS= True
 
 
     # email configurations
@@ -19,7 +19,7 @@ class Config:
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://axs:code@localhost/blog_test'
+    SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://axs:code@localhost/blog_test'
 
 
 class ProdConfig(Config):
@@ -43,7 +43,7 @@ class DevConfig(Config):
     '''
      # this is the location of the database with authentication.
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://axs:code@localhost/blog'
+    SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://axs:code@localhost/blog'
     
     DEBUG = True
 
